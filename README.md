@@ -91,3 +91,17 @@ Projekt wykonany w ramach pracy indywidualnej na studia:
 
 ### Panel pracownika
 ![Panel pracownika](screenshots/Panel_pracownika.png)
+
+---
+
+## Plany na przyszłość
+
+1. Połączenie wpisu dostępności z faktycznym zapisem klienta na trening.
+2. Dodanie możliwości logowania.
+3. Dodanie funkcjonalności zmiany na zapisany już termin.
+4. Stworzenie możliwości podglądu grafiku pracowników.
+5. Funkcjonalność zapisywanie danych po zamknięciu aplikacji.
+6. Poprawienie interface'u użytkownika.
+7. Dodanie wyboru godziny treningu.
+8. Możliwość anulowania zapisu na trening przez klienta.
+9. Automatyczne kontrolowanie ilości zapisanych osób na treningi.
