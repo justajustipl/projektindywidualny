@@ -61,10 +61,15 @@ Projekt został stworzony przy użyciu:
 
 Projekt_silka/
 │
+
 ├── Start.cs
+
 ├── ClientForm.cs
+
 ├── EmployeeForm.cs
+
 │
+
 └── Projekt_silka.csproj
 
 
@@ -78,7 +83,6 @@ Projekt wykonany w ramach pracy indywidualnej na studia:
 
 ## Zrzuty ekranu
 
-screenshots/
-    Start.png
-    Panel klienta.png
-    Panel pracownika.png
+Start.png
+Panel_klienta.png
+Panel_pracownika.png
