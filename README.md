@@ -1,3 +1,7 @@
+<p align="center">
+<img src="logo_projekt.png" width="200">
+</p>
+
 # System zapisów na treningi
 
 Aplikacja desktopowa stworzona w języku C# z wykorzystaniem Windows Forms.  
