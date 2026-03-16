@@ -91,7 +91,7 @@ Projekt wykonany w ramach pracy indywidualnej na studia:
 ![Menu startowe](screenshots/Start.png)
 
 ### Panel klienta
-![Panel klienta](screenshots/Panel_klienta.png)
+![Panel klienta](screenshots/Panel_uzytkownika.png)
 
 ### Panel pracownika
 ![Panel pracownika](screenshots/Panel_pracownika.png)
