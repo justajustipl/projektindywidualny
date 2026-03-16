@@ -78,6 +78,7 @@ Projekt wykonany w ramach pracy indywidualnej na studia:
 
 ## Zrzuty ekranu
 
-start.png
-client.png
-employee.png
+screenshots/
+    Start.png
+    Panel klienta.png
+    Panel pracownika.png
