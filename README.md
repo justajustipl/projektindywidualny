@@ -83,6 +83,11 @@ Projekt wykonany w ramach pracy indywidualnej na studia:
 
 ## Zrzuty ekranu
 
-Start.png
-Panel_klienta.png
-Panel_pracownika.png
+### Menu startowe
+![Menu startowe](screenshots/Start.png)
+
+### Panel klienta
+![Panel klienta](screenshots/Panel_klienta.png)
+
+### Panel pracownika
+![Panel pracownika](screenshots/Panel_pracownika.png)
