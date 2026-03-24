@@ -96,6 +96,12 @@ Projekt wykonany w ramach pracy indywidualnej na studia:
 ### Panel pracownika
 ![Panel pracownika](screenshots/Panel_pracownika.png)
 
+### Diagram UML
+![Diagram UML](screenshots/DiagramUML.png)
+
+### Schemat blokowy aplikacji
+![Schemat blokowy](screenshots/Schemat_blokowy.png)
+
 ---
 
 ## Plany na przyszłość

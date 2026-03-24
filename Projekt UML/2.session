@@ -1,0 +1,11 @@
+window_sizes 1920 1009 228 1687 859 104
+
+show_stereotypes
+selected attribute_ref 129282 // dataZapisu
+open
+  class_ref 128130 // Trener
+  class_ref 128258 // Trening
+  class_ref 128386 // Klient
+  class_ref 128514 // Rezerwacja
+end
+end
