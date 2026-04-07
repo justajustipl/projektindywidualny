@@ -88,19 +88,19 @@ Projekt wykonany w ramach pracy indywidualnej na studia:
 ## Zrzuty ekranu
 
 ### Menu startowe
-![Menu startowe](screenshots/Start.png)
+![Menu startowe](screenshots/start.png)
 
 ### Panel klienta
-![Panel klienta](screenshots/Panel_uzytkownika.png)
+![Panel klienta](screenshots/user.png)
 
 ### Panel pracownika
-![Panel pracownika](screenshots/Panel_pracownika.png)
+![Panel pracownika](screenshots/trainer.png)
 
 ### Diagram UML
-![Diagram UML](screenshots/DiagramUML.png)
+![Diagram UML](screenshots/uml.png)
 
 ### Schemat blokowy aplikacji
-![Schemat blokowy](screenshots/Schemat_blokowy.png)
+![Schemat blokowy](screenshots/block.png)
 
 ---
 
