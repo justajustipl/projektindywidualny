@@ -133,7 +133,7 @@ Projekt wykonany w ramach pracy indywidualnej na studia:
 ![Menu startowe](screenshots/Start.png)
 
 ### Panel logowania klienta
-![Panel logowania klienta](screenshots/Login.png)
+![Panel logowania klienta](screenshots/login.png)
 
 ### Panel logowania pracownika
 ![Panel logowania pracownika](screenshots/Login2.png)
