@@ -130,10 +130,11 @@ Projekt wykonany w ramach pracy indywidualnej na studia:
 ## Zrzuty ekranu
 
 ### Menu startowe
-![Menu startowe](screenshots/start.png)
+![Menu startowe](screenshots/Start.png)
 
 ### Panel logowania
 ![Panel logowania](screenshots/Login.png)
+![Panel logowania](screenshots/Login2.png)
 
 ### Panel klienta
 ![Panel klienta](screenshots/user.png)
