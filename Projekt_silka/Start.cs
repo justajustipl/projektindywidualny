@@ -2,6 +2,8 @@ namespace Projekt_silka
 {
     public partial class Start : Form
     {
+        private Database _db = new Database();
+
         public Start()
         {
             InitializeComponent();
@@ -9,20 +11,18 @@ namespace Projekt_silka
 
         private void label1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ClientForm okno = new ClientForm();
-            okno.Show();
-            this.Hide();
+            var login = new LoginForm(_db, UserRole.Client);
+            login.ShowDialog();
         }
+
         private void button2_Click(object sender, EventArgs e)
         {
-            EmployeeForm okno = new EmployeeForm();
-            okno.Show();
-            this.Hide();
+            var login = new LoginForm(_db, UserRole.Employee);
+            login.ShowDialog();
         }
     }
 }
