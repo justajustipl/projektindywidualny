@@ -133,10 +133,13 @@ Projekt wykonany w ramach pracy indywidualnej na studia:
 ![Menu startowe](screenshots/Start.png)
 
 ### Panel logowania klienta
-![Panel logowania klienta](screenshots/login.png)
+![Panel logowania](screenshots/login.png)
+
+### Panel rejestracji klienta
+![Panel logowania](screenshots/register.png)
 
 ### Panel logowania pracownika
-![Panel logowania pracownika](screenshots/Login2.png)
+![Panel logowania](screenshots/Login2.png)
 
 ### Panel klienta
 ![Panel klienta](screenshots/user.png)
@@ -154,21 +157,23 @@ Projekt wykonany w ramach pracy indywidualnej na studia:
 
 ## Zrealizowane funkcjonalności
 
-1. ✅ Połączenie wpisu dostępności z faktycznym zapisem klienta na trening.
-2. ✅ Dodanie możliwości logowania (SQLite).
-3. ✅ Dodanie funkcjonalności zmiany na zapisany już termin.
-4. ✅ Stworzenie możliwości podglądu grafiku pracowników.
-5. ✅ Funkcjonalność zapisywania danych po zamknięciu aplikacji.
-6. ✅ Poprawienie interfejsu użytkownika.
-7. ✅ Dodanie wyboru godziny treningu.
-8. ✅ Możliwość anulowania zapisu na trening przez klienta.
-9. ✅ Automatyczne kontrolowanie ilości zapisanych osób na treningi.
-10. ✅ Rezerwacja sali dla treningów grupowych z kontrolą konfliktów.
+1. Połączenie wpisu dostępności z faktycznym zapisem klienta na trening.
+2. Dodanie możliwości logowania (SQLite).
+3. Dodanie funkcjonalności zmiany na zapisany już termin.
+4. Stworzenie możliwości podglądu grafiku pracowników.
+5. Funkcjonalność zapisywania danych po zamknięciu aplikacji.
+6. Poprawienie interfejsu użytkownika.
+7. Dodanie wyboru godziny treningu.
+8. Możliwość anulowania zapisu na trening przez klienta.
+9. Automatyczne kontrolowanie ilości zapisanych osób na treningi.
+10. Rezerwacja sali dla treningów grupowych z kontrolą konfliktów.
+11. Hashowanie haseł użytkowników.
+12. Dodanie rejestracji nowego użytkownika z poziomu aplikacji.
+13. Dodadnie symulacji powiadomień e-mail.
 
 ## Plany na przyszłość
 
-- Hashowanie haseł użytkowników.
-- Rejestracja nowych klientów z poziomu aplikacji.
 - Powiadomienia o nadchodzących treningach.
+- Eksportowanie planów do PDF
 - Płatności online.
 - Wersja mobilna.

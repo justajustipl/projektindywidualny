@@ -18,6 +18,7 @@ namespace Projekt_silka
         private TextBox txtPassword;
         private Button btnLogin;
         private Button btnBack;
+        private Button btnRegister;
         private Label lblError;
 
         public LoginForm(Database db, UserRole role)
@@ -108,13 +109,26 @@ namespace Projekt_silka
             };
             btnBack.Click += (s, e) => this.Close();
 
+            btnRegister = new Button
+            {
+                Text = "Nie masz konta? Zarejestruj się",
+                Font = new Font("Segoe UI", 9),
+                Size = new Size(220, 30),
+                Location = new Point(290, 365),
+                FlatStyle = FlatStyle.Flat,
+                ForeColor = Color.FromArgb(80, 0, 120),
+                Cursor = Cursors.Hand,
+                Visible = _role == UserRole.Client
+            };
+            btnRegister.Click += BtnRegister_Click;
+
             this.AcceptButton = btnLogin;
 
             this.Controls.AddRange(new Control[]
             {
                 lblTitle, lblLogin, txtLogin,
                 lblPassword, txtPassword,
-                lblError, btnLogin, btnBack
+                lblError, btnLogin, btnBack, btnRegister
             });
         }
 
@@ -155,6 +169,18 @@ namespace Projekt_silka
                 var panel = new EmployeeForm(_db, result.Value.id, result.Value.name);
                 panel.ShowDialog();
                 this.Close();
+            }
+        }
+
+        private void BtnRegister_Click(object sender, EventArgs e)
+        {
+            var registerForm = new RegisterForm(_db);
+            registerForm.ShowDialog();
+
+            if (registerForm.RegisteredLogin != null)
+            {
+                txtLogin.Text = registerForm.RegisteredLogin;
+                txtPassword.Focus();
             }
         }
     }

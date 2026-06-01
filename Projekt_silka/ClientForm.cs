@@ -238,9 +238,7 @@ namespace Projekt_silka
                 Color.FromArgb(220, 220, 230), ButtonBorderStyle.Solid);
         }
 
-        private void ClientForm_Load(object sender, EventArgs e)
-        {
-        }
+        private void ClientForm_Load(object sender, EventArgs e) { }
 
         private void LoadAvailableTrainings()
         {
@@ -300,6 +298,13 @@ namespace Projekt_silka
                 $"Zapisano!\n\n{selected.Title}\n{selected.Date} o {selected.Time}",
                 "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            string emailSave = _db.GetClientEmail(_clientId);
+            if (!string.IsNullOrEmpty(emailSave))
+            {
+                EmailService.SendRegistrationConfirmation(emailSave, _clientName, selected.Title, selected.Date, selected.Time, selected.EmployeeName);
+                MessageBox.Show($"✉ Powiadomienie wysłane na: {emailSave}", "Email", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
             LoadAvailableTrainings();
             LoadMyRegistrations();
         }
@@ -322,6 +327,14 @@ namespace Projekt_silka
                 _db.CancelRegistration(_clientId, selected.Id);
                 MessageBox.Show("Wypisano z treningu.", "Gotowe",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                string emailCancel = _db.GetClientEmail(_clientId);
+                if (!string.IsNullOrEmpty(emailCancel))
+                {
+                    EmailService.SendCancellationConfirmation(emailCancel, _clientName, selected.Title, selected.Date, selected.Time);
+                    MessageBox.Show($"✉ Powiadomienie wysłane na: {emailCancel}", "Email", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
                 LoadAvailableTrainings();
                 LoadMyRegistrations();
             }
@@ -375,6 +388,13 @@ namespace Projekt_silka
                 MessageBox.Show(
                     $"Termin zmieniony!\n\n{newTraining.Title}\n{newTraining.Date} o {newTraining.Time}",
                     "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                string emailReschedule = _db.GetClientEmail(_clientId);
+                if (!string.IsNullOrEmpty(emailReschedule))
+                {
+                    EmailService.SendRescheduleConfirmation(emailReschedule, _clientName, oldTraining.Title, oldTraining.Date, oldTraining.Time, newTraining.Title, newTraining.Date, newTraining.Time);
+                    MessageBox.Show($"✉ Powiadomienie wysłane na: {emailReschedule}", "Email", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
 
                 LoadAvailableTrainings();
                 LoadMyRegistrations();

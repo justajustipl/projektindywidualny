@@ -65,14 +65,21 @@ namespace Projekt_silka
                 );";
             cmd.ExecuteNonQuery();
 
-            // Safe migration — adds Room column if it doesn't exist yet
             try
             {
                 var alter = conn.CreateCommand();
                 alter.CommandText = "ALTER TABLE Trainings ADD COLUMN Room TEXT DEFAULT ''";
                 alter.ExecuteNonQuery();
             }
-            catch { /* column already exists, ignore */ }
+            catch { }
+
+            try
+            {
+                var alter2 = conn.CreateCommand();
+                alter2.CommandText = "ALTER TABLE Clients ADD COLUMN Email TEXT DEFAULT ''";
+                alter2.ExecuteNonQuery();
+            }
+            catch { }
 
             SeedDemoData(conn);
         }
@@ -84,13 +91,15 @@ namespace Projekt_silka
             long count = (long)cmd.ExecuteScalar();
             if (count > 0) return;
 
-            cmd.CommandText = "INSERT INTO Employees (Name, Login, Password) VALUES ('Anna Kowalska', 'anna', '1234')";
+            string hash = BCrypt.Net.BCrypt.HashPassword("1234");
+
+            cmd.CommandText = $"INSERT INTO Employees (Name, Login, Password) VALUES ('Anna Kowalska', 'anna', '{hash}')";
             cmd.ExecuteNonQuery();
-            cmd.CommandText = "INSERT INTO Employees (Name, Login, Password) VALUES ('Jan Nowak', 'jan', '1234')";
+            cmd.CommandText = $"INSERT INTO Employees (Name, Login, Password) VALUES ('Jan Nowak', 'jan', '{hash}')";
             cmd.ExecuteNonQuery();
-            cmd.CommandText = "INSERT INTO Clients (Name, Login, Password) VALUES ('Piotr Wiśniewski', 'piotr', '1234')";
+            cmd.CommandText = $"INSERT INTO Clients (Name, Login, Password) VALUES ('Piotr Wi\u015bniewski', 'piotr', '{hash}')";
             cmd.ExecuteNonQuery();
-            cmd.CommandText = "INSERT INTO Clients (Name, Login, Password) VALUES ('Marta Zielińska', 'marta', '1234')";
+            cmd.CommandText = $"INSERT INTO Clients (Name, Login, Password) VALUES ('Marta Zieli\u0144ska', 'marta', '{hash}')";
             cmd.ExecuteNonQuery();
 
             cmd.CommandText = "INSERT INTO Trainings (Title, EmployeeId, Date, Time, MaxSlots, Room) VALUES ('Indywidualny', 1, '2026-06-01', '10:00', 1, '')";
@@ -110,12 +119,15 @@ namespace Projekt_silka
             using var conn = new SqliteConnection(_connectionString);
             conn.Open();
             var cmd = conn.CreateCommand();
-            cmd.CommandText = "SELECT Id, Name FROM Clients WHERE Login=@l AND Password=@p";
+            cmd.CommandText = "SELECT Id, Name, Password FROM Clients WHERE Login=@l";
             cmd.Parameters.AddWithValue("@l", login);
-            cmd.Parameters.AddWithValue("@p", password);
             using var reader = cmd.ExecuteReader();
             if (reader.Read())
-                return (reader.GetInt32(0), reader.GetString(1));
+            {
+                string hash = reader.GetString(2);
+                if (BCrypt.Net.BCrypt.Verify(password, hash))
+                    return (reader.GetInt32(0), reader.GetString(1));
+            }
             return null;
         }
 
@@ -124,12 +136,15 @@ namespace Projekt_silka
             using var conn = new SqliteConnection(_connectionString);
             conn.Open();
             var cmd = conn.CreateCommand();
-            cmd.CommandText = "SELECT Id, Name FROM Employees WHERE Login=@l AND Password=@p";
+            cmd.CommandText = "SELECT Id, Name, Password FROM Employees WHERE Login=@l";
             cmd.Parameters.AddWithValue("@l", login);
-            cmd.Parameters.AddWithValue("@p", password);
             using var reader = cmd.ExecuteReader();
             if (reader.Read())
-                return (reader.GetInt32(0), reader.GetString(1));
+            {
+                string hash = reader.GetString(2);
+                if (BCrypt.Net.BCrypt.Verify(password, hash))
+                    return (reader.GetInt32(0), reader.GetString(1));
+            }
             return null;
         }
 
@@ -243,6 +258,29 @@ namespace Projekt_silka
             return true;
         }
 
+        public bool RegisterNewClient(string name, string login, string password, string email)
+        {
+            try
+            {
+                using var conn = new SqliteConnection(_connectionString);
+                conn.Open();
+                var cmd = conn.CreateCommand();
+                string hash = BCrypt.Net.BCrypt.HashPassword(password);
+                cmd.CommandText = @"INSERT INTO Clients (Name, Login, Password, Email) 
+                                    VALUES (@name, @login, @password, @email)";
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.Parameters.AddWithValue("@login", login);
+                cmd.Parameters.AddWithValue("@password", hash);
+                cmd.Parameters.AddWithValue("@email", email);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public void CancelRegistration(int clientId, int trainingId)
         {
             using var conn = new SqliteConnection(_connectionString);
@@ -290,6 +328,17 @@ namespace Projekt_silka
         {
             CancelRegistration(clientId, oldTrainingId);
             RegisterClient(clientId, newTrainingId);
+        }
+
+        public string GetClientEmail(int clientId)
+        {
+            using var conn = new SqliteConnection(_connectionString);
+            conn.Open();
+            var cmd = conn.CreateCommand();
+            cmd.CommandText = "SELECT Email FROM Clients WHERE Id=@id";
+            cmd.Parameters.AddWithValue("@id", clientId);
+            var result = cmd.ExecuteScalar();
+            return result?.ToString() ?? "";
         }
 
         // --- AVAILABILITY ---
